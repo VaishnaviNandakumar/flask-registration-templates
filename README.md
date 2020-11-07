@@ -13,3 +13,8 @@ Install Flask
 ```
 pip install Flask
 ```
+To run
+```
+set FLASK_APP=sample.py
+flask run
+```
