@@ -18,3 +18,6 @@ To run
 set FLASK_APP=sample.py
 flask run
 ```
+pip install flask-mysqldb
+pip install Flask-WTF
+pip install Flask-passlib
