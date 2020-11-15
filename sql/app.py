@@ -11,7 +11,7 @@ app = Flask(__name__)
 # Config MySQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = #password
+app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'registration'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 # init MYSQL
@@ -46,7 +46,11 @@ def login():
 
     return render_template('login.html')
 
-
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash("You are now logged out", "success")
+    return render_template('login.html')
 
 class registerForm(Form):
     name = StringField('Name', [validators.Length(min = 1, max = 50)])
@@ -80,11 +84,21 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', form = form)
 
-
+def is_logged_in(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            flash('Unauthorized, Please login', 'danger')
+            return redirect(url_for('login'))
+    return wrap
 
 
 @app.route('/dashboard')
+@is_logged_in
 def dashboard():
+    
     return render_template('dashboard.html')
 
 
