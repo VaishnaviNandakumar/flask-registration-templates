@@ -1,9 +1,11 @@
-from userClass import *
+from config import *
+from functools import wraps
+from userClass import User
+
 
 @app.route('/register', methods = ['GET','POST'])
 def register():
-    form = registerForm(request.form)
-    return User().register(form)
+    return User().register()
 
 @app.route('/login' , methods = ['GET', 'POST'])
 def login():
@@ -19,7 +21,7 @@ def is_logged_in(f):
         if 'logged_in' in session:
             return f(*args, **kwargs)
         else:
-            flash('Unauthorized, Please login', 'danger')
+            flash('Unauthorized Please login', 'danger')
             return redirect(url_for('login'))
     return wrap
 
@@ -27,7 +29,6 @@ def is_logged_in(f):
 @is_logged_in
 def dashboard():
     return render_template('dashboard.html')
-
 
 if __name__ == "__main__":
     app.secret_key = 'secret_key123'

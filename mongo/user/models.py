@@ -17,9 +17,11 @@ class User:
     # Create the user object
     user = {
       "_id": uuid.uuid4().hex,
-      "name": request.form.get('name'),
-      "email": request.form.get('email'),
-      "password": request.form.get('password')
+      "name" : request.form.name.data,
+      "email" : request.form.email.data,
+      "username" : request.form.username.data,
+      "password" :  request.form.password.data
+
     }
 
     # Encrypt the password
@@ -48,3 +50,5 @@ class User:
       return self.start_session(user)
     
     return jsonify({ "error": "Invalid login credentials" }), 401
+
+   
