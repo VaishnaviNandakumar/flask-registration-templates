@@ -16,12 +16,10 @@ class User:
     del user['password']
     session['logged_in'] = True
     session['user'] = user
-    return jsonify(user), 200
-
-  def signup(self):
+    
+  def register(self):
     form = registerForm(request.form)
     if request.method == 'POST' and form.validate():
-      print(request.form)
 
       # Create the user object
       user = {
@@ -39,20 +37,26 @@ class User:
 
       # Check for existing email address
       if db.users.find_one({ "email": user['email'] }):
-        return jsonify({ "error": "Email address already in use" }), 400
+        error = "Email already exists"
+        return render_template('login.html', error = error)
 
       if db.users.insert_one(user):
-        return self.start_session(user)
+        self.start_session(user)
+        flash('You are now registered and can log in', 'success')
+        return render_template('login.html')
 
-      return jsonify({ "error": "Signup failed" }), 400
+      error = 'Invalid login'
+      return render_template('login.html', error=error)
     
     else:
       return render_template('register.html', form = form)
 
 
-  def signout(self):
+  def logout(self):
+    
     session.clear()
-    return redirect('/')
+    flash("You are now logged out", "success")
+    return redirect('/login')
   
   def login(self):
     if request.method == 'POST':
@@ -62,9 +66,11 @@ class User:
       })
 
       if user and sha256_crypt.verify(request.form['password'], user['password']):
-        return self.start_session(user)
+        self.start_session(user)
+        return render_template('dashboard.html')
+
       
-      #return jsonify({ "error": "Invalid login credentials" }), 401
+      
 
     return render_template('login.html')
    

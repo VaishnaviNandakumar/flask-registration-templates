@@ -45,6 +45,7 @@ class User:
         return render_template('login.html')
         
     def logout(self):
+        
         session.clear()
         flash("You are now logged out", "success")
         return render_template('login.html')

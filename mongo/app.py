@@ -15,24 +15,20 @@ def login_required(f):
     if 'logged_in' in session:
       return f(*args, **kwargs)
     else:
+      flash('Unauthorized Please login', 'danger')
       return redirect('/login')
   
   return wrap
 
-@app.route('/register')
-def home():
-  return render_template('register.html')
+
+@app.route('/register', methods=['POST','GET'])
+def register():
+  return User().register()
 
 
-
-@app.route('/signup', methods=['POST','GET'])
-def signup():
-  return User().signup()
-
-
-@app.route('/signout')
-def signout():
-  return User().signout()
+@app.route('/logout')
+def logout():
+  return User().logout()
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
