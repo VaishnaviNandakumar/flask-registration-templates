@@ -18,8 +18,8 @@ class User:
     session['user'] = user
     
   def register(self):
-    reg_form = registerForm()
-    login_form = loginForm()
+    reg_form = registerForm(request.form)
+    login_form = loginForm(request.form)
     if request.method == "POST":   
       if reg_form.submit1.data and reg_form.validate():
         user = {
