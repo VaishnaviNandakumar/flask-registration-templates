@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request, session, redirect
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
-from registerClass import registerForm
+from registerClass import registerForm,loginForm
 from passlib.hash import sha256_crypt
 import app
 import pymongo
@@ -18,40 +18,52 @@ class User:
     session['user'] = user
     
   def register(self):
-    form = registerForm(request.form)
-    if request.method == 'POST' and form.validate():
+    reg_form = registerForm()
+    login_form = loginForm()
+    if request.method == "POST":   
+      if reg_form.submit1.data and reg_form.validate():
+        user = {
+          "_id": uuid.uuid4().hex,
+          "name" : reg_form.name.data,
+          "email" : reg_form.email.data,
+          "username" : reg_form.username.data,
+          "password" :  reg_form.password.data
+        }
+        user['password'] = sha256_crypt.encrypt(user['password'])
+        if db.users.find_one({ "email": user['email'] }):
+          error = "Email already exists"
+          return render_template('login.html', error = error, reg_form=reg_form, login_form=login_form)
+        
 
-      # Create the user object
-      user = {
-        "_id": uuid.uuid4().hex,
-        "name" : form.name.data,
-        "email" : form.email.data,
-        "username" : form.username.data,
-        "password" :  form.password.data
-
-      }
-
-      # Encrypt the password
-      user['password'] = sha256_crypt.encrypt(user['password'])
-
-
-      # Check for existing email address
-      if db.users.find_one({ "email": user['email'] }):
-        error = "Email already exists"
-        return render_template('login.html', error = error)
-
-      if db.users.insert_one(user):
-        self.start_session(user)
-        flash('You are now registered and can log in', 'success')
-        return render_template('login.html')
-
-      error = 'Invalid login'
-      return render_template('login.html', error=error)
+        if db.users.insert_one(user):
+          self.start_session(user)
+          flash('You are now registered and can log in', 'success')
+          return render_template('register.html',  reg_form=reg_form, login_form=login_form)
     
+      
+      
+      elif login_form.submit2.data and login_form.validate():
+        
+        user = db.users.find_one({
+         "username" : login_form.username.data,
+        })
+
+        if user and sha256_crypt.verify(login_form.password.data, user['password']):
+          self.start_session(user)
+          return render_template('dashboard.html')
+
+      print(login_form.submit2.data, "x", login_form.validate())
+      error = 'Invalid login'
+      return render_template('register.html', error=error,  reg_form=reg_form, login_form=login_form)
+  
     else:
-      return render_template('register.html', form = form)
+      return render_template('register.html', reg_form=reg_form, login_form=login_form)
 
 
+  
+
+      
+  
   def logout(self):
     
     session.clear()
@@ -62,10 +74,10 @@ class User:
     if request.method == 'POST':
             
       user = db.users.find_one({
-        "username" : request.form['username']
+        "username" : request.form['username_l']
       })
 
-      if user and sha256_crypt.verify(request.form['password'], user['password']):
+      if user and sha256_crypt.verify(request.form['password_l'], user['password']):
         self.start_session(user)
         return render_template('dashboard.html')
 

@@ -7,21 +7,43 @@
     {% from "includes/_formhelpers.html" import render_field %}
     <form method="POST" action="">
         <div class="form-group">
-            {{render_field(form.name, class_="form-control")}}
+            {{render_field(reg_form.name, class_="form-control")}}
         </div>
         <div class="form-group">
-            {{render_field(form.email, class_="form-control")}}
+            {{render_field(reg_form.email, class_="form-control")}}
         </div>
         <div class="form-group">
-            {{render_field(form.username, class_="form-control")}}
+            {{render_field(reg_form.username, class_="form-control")}}
         </div>
         <div class="form-group">
-            {{render_field(form.password, class_="form-control")}}
+            {{render_field(reg_form.password, class_="form-control")}}
         </div>
         <div class="form-group">
-            {{render_field(form.confirm, class_="form-control")}}
+            {{render_field(reg_form.confirm, class_="form-control")}}
         </div>
-        <p><input type="submit" class="btn btn-primary"></p>
+        <div class="btn">
+            {{render_field(reg_form.submit1, class_="form-control")}}
+        </div>
+      
+        
+
+        
     </form>
+    
+    
+    
+    <form method="POST" action="">
+        <div class="form-group">
+            {{render_field(login_form.username, class_="form-control")}}
+        </div>
+        <div class="form-group">
+            {{render_field(login_form.password, class_="form-control")}}
+        </div>
+        <div class="btn">
+            {{render_field(login_form.submit2, class_="form-control")}}
+        </div>
+    </form>
+    
+
 
 {% endblock %}
