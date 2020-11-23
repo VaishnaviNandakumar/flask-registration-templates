@@ -6,21 +6,21 @@ import hashlib
 
 
 class registerForm(Form):
-    name = StringField('Name', [ validators.DataRequired(),validators.Length(min = 1, max = 50)])
-    username = StringField('Username', [validators.Length(min = 4, max = 25)])
-    email = StringField('Email', [validators.Length(min = 6, max = 25)])
-    password = PasswordField('Password', [
+    name = StringField('', [ validators.DataRequired(),validators.Length(min = 1, max = 50)], render_kw={"placeholder": "Name"})
+    username = StringField('', [validators.Length(min = 4, max = 25)], render_kw={"placeholder": "Username"})
+    email = StringField('', [validators.Length(min = 6, max = 25)], render_kw={"placeholder": "Email"})
+    password = PasswordField('', [
         validators.DataRequired(),
-        validators.EqualTo('confirm', message="Passwords do not match")
-    ])
-    confirm = PasswordField('Confirm Password')
+        validators.EqualTo('confirm', message="Passwords do not match!")
+    ], render_kw={"placeholder": "Password"})
+    confirm = PasswordField('', render_kw={"placeholder": "Confirm Password"})
     submit1 = SubmitField('Register')
 
 
 class loginForm(Form):
     
-    username = StringField('Username')
-    password = PasswordField('Password', [
+    username = StringField(render_kw={"placeholder": "Username"})
+    password = PasswordField('', [
         validators.DataRequired()
-    ])
+    ], render_kw={"placeholder": "User"})
     submit2 = SubmitField('Login')
