@@ -1,13 +1,8 @@
 from flask import Flask, render_template, session, redirect
 from functools import wraps
-from models import *
-
-
+from user import *
 
 app = Flask(__name__)
-
-# Database
-
 
 def login_required(f):
   @wraps(f)
@@ -15,13 +10,13 @@ def login_required(f):
     if 'logged_in' in session:
       return f(*args, **kwargs)
     else:
-      flash('Unauthorized Please login', 'danger')
-      return redirect('/login')
+      flash('Unauthorized. Please login.', 'danger')
+      return redirect('/')
   
   return wrap
 
 
-@app.route('/register', methods=['POST','GET'])
+@app.route('/', methods=['POST','GET'])
 def register():
   return User().register()
 
@@ -29,11 +24,6 @@ def register():
 @app.route('/logout')
 def logout():
   return User().logout()
-
-@app.route('/login', methods=['POST', 'GET'])
-def login():
-  return User().login()
-
 
 @app.route('/dashboard')
 @login_required

@@ -28,7 +28,7 @@ span{
 }
 h2 {
 	letter-spacing: 2px;
-	margin-top: 20% !important;
+	margin-top: 10% !important;
 }
 
 p {
@@ -69,7 +69,10 @@ button {
 	text-align: center;
 }
 
-
+.alert{
+	width: 200%;
+	margin-left: -50%;
+}
 .form-control{
 	width :150% !important;
 	margin-left: -20% !important;
