@@ -19,8 +19,8 @@ class registerForm(Form):
 
 class loginForm(Form):
     
-    username = StringField(render_kw={"placeholder": "Username"})
+    username = StringField('', render_kw={"placeholder": "Username"})
     password = PasswordField('', [
         validators.DataRequired()
-    ], render_kw={"placeholder": "User"})
+    ], render_kw={"placeholder": "Password"})
     submit2 = SubmitField('Login')

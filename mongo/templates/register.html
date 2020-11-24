@@ -6,48 +6,52 @@
 {% block body %}
 
 <div class="container" id="container">
-
+    
     <div class="form-container sign-up-container">
-    
-
     {% from "includes/_formhelpers.html" import render_field %}
-    
     <form method="POST" action="">
         <h2>Enter your details!</h2>
         <div class="input" >
             {{render_field(reg_form.name)}}
         </div>
-        <div class="form-group">
-            {{render_field(reg_form.email, class_="form-control")}}
+        <div class="input" >
+            {{render_field(reg_form.email)}}
         </div>
-        <div class="form-group">
-            {{render_field(reg_form.username, class_="form-control")}}
+        <div class="input" >
+            {{render_field(reg_form.username)}}
         </div>
-        <div class="form-group">
-            {{render_field(reg_form.password, class_="form-control")}}
+        <div class="input">
+            {{render_field(reg_form.password)}}
         </div>
-        <div class="form-group">
-            {{render_field(reg_form.confirm, class_="form-control")}}
+        <div class="input" >
+            {{render_field(reg_form.confirm)}}
         </div>
         <div class="btn">
-            {{render_field(reg_form.submit1, class_="form-control")}}
+            <label for="submit1"></label>
+            {{render_field(reg_form.submit1)}}
         </div>
         
     </div>   
     </form>
     
-    
-    <div class="form-container sign-in-container">  
+ 
+    <div class="form-container sign-in-container"> 
+          
     <form method="POST" action="">
+        <div class="mssgs">
+            {% include 'includes/_messages.html' %}
+        </div>   
+        <h1>Sign In !</h1> <br>    
         <div class="form-group">
             {{render_field(login_form.username, class_="form-control")}}
         </div>
         <div class="form-group">
             {{render_field(login_form.password, class_="form-control")}}
         </div>
-        <div class="btn">
-            {{render_field(login_form.submit2, class_="form-control")}}
-        </div>
+        <button class=" button login">
+            <label for="submit2"></label>
+            {{render_field(login_form.submit2)}}
+        </button>
     </form>
     </div>
 
