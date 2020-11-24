@@ -18,9 +18,17 @@ body {
 }
 
 h1 {
-
 	letter-spacing: 2px;
-	
+}
+
+span{
+	font-size: 12px !important;
+	margin-top: 2px !important;
+	width: 20% !important;
+}
+h2 {
+	letter-spacing: 2px;
+	margin-top: 20% !important;
 }
 
 p {
@@ -28,21 +36,46 @@ p {
 	font-weight: 100;
 	padding: 10px;
 	letter-spacing: 0.5px;
-	
-	
 }
 
-
-
-
 button {
-	
 	color: #FFFFFF ;
 	font-size: 15px !important;
 	padding: 12px 45px;
 	letter-spacing: 5px !important;
 	transition: transform 80ms ease-in;
 	margin-top: 3%  !important;
+}
+
+#submit2 {
+	background-color: transparent !important;
+	border: 1px solid#191094;
+	font-size: 15px !important;
+	padding: 12px 45px;
+	letter-spacing: 5px !important;
+	width: 30%;
+	margin-top: 4%;
+	text-align: center;
+}
+
+#submit1{
+	background-color: transparent !important;
+	border: 1px solid#191094;
+	font-size: 15px !important;
+	padding: 12px 45px;
+	letter-spacing: 5px !important;
+	width: 100% !important;
+	margin-top: 6%;
+	text-align: center;
+}
+
+
+.form-control{
+	width :150% !important;
+	margin-left: -20% !important;
+	background-color: #eee !important;
+	border-radius: 0px !important;
+	
 }
 
 button:active {
@@ -60,14 +93,6 @@ button.register {
 
 
 
-.login{
-	background-color: transparent !important;
-	border: 1px solid#191094;
-	font-size: 15px !important;
-	padding: 12px 45px;
-	letter-spacing: 5px !important;
-}
-
 form {
 	background-color: #FFFFFF;
 	display: flex;
@@ -79,15 +104,6 @@ form {
 	text-align: center;
 	margin-top: -10%;
 }
-
-input {
-	background-color: #eee;
-	border: none;
-	padding: 12px 15px;
-	margin-top: 1px !important;
-	width: 100%;
-}
-
 
 .container {
 	background-color: #fff;
@@ -109,6 +125,7 @@ input {
 	border-right: 3px solid black;
 	
 }
+
 
 .container.right-panel-active .sign-in-container {
 	transform: translateX(100%);
