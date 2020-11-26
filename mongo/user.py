@@ -6,7 +6,7 @@ from passlib.hash import sha256_crypt
 import pymongo
 import uuid
 import app
-
+x = "register.html"
 client = pymongo.MongoClient('localhost', 27017)
 db = client.user_login_system
 
@@ -46,12 +46,12 @@ class User:
         if user and sha256_crypt.verify(login_form.password.data, user['password']):
           self.start_session(user)
           return render_template('dashboard.html')
-
+      
       error = 'Check the registered details!'
       return render_template('register.html', error=error,  reg_form=reg_form, login_form=login_form)
   
     else:
-      return render_template('register.html', reg_form=reg_form, login_form=login_form)
+      return render_template(x, reg_form=reg_form, login_form=login_form)
 
   def logout(self):
     session.clear()

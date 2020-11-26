@@ -1,68 +1,78 @@
-<title>Home</title>
-{%extends 'base.html' %}
-{% block body %}
-<div class="container" id="container">
-
-    <div class="form-container sign-up-container">
-        <div class="mssg">
-        {% from "includes/_formhelpers.html" import render_field %}
-        </div>   
-        <form method="POST" action="">
-            <br><h2>Enter your details!</h2><br>
-            <div class="form-group" >
-                {{render_field(reg_form.name, class_="form-control")}}
-            </div>
-            <div class="form-group" >
-                {{render_field(reg_form.email, class_="form-control")}}
-            </div>
-            <div class="form-group" >
-                {{render_field(reg_form.username, class_="form-control")}}
-            </div>
-            <div class="form-group">
-                {{render_field(reg_form.password, class_="form-control")}}
-            </div>
-            <div class="form-group" >
-                {{render_field(reg_form.confirm, class_="form-control")}}
-            </div>
-            <div class="btn">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">  
+    </head>
+    <title>Home</title>
+    {%extends 'base.html' %}
+    {% block body %}
+    <section class="forms-section">
+        
+        <div class="forms">
+          <div class="form-wrapper is-active">
+            <button type="button" class="switcher switcher-login">
+              Login
+              <span class="underline"></span>
+            </button>
+            <div class="mssg">
+                {% from "includes/_formhelpers.html" import render_field %}
+            </div>  
+            <form class="form form-login" method="POST">
+                  
+              <fieldset>
+                <div class="mssgs">
+                    {% include 'includes/_messages.html' %}
+                </div>
+                <div class="input-block">
+                    {{render_field(login_form.username, class_="form-control")}}
+                </div>
+    
+                <div class="input-block">
+                    {{render_field(login_form.password, class_="form-control")}}
+                </div>
+                <div class="login-btn">
+                    <label for="submit2"></label>
+                    {{render_field(login_form.submit2)}}   
+                </div>
+              </fieldset>
+           
+            </form>
+          </div>
+          
+          <div class="form-wrapper">
+            <button type="button" class="switcher switcher-signup">
+              Sign Up
+              <span class="underline"></span>
+            </button>
+        
+            <form class="form form-signup" method="POST">
+              <fieldset>
+                <div class="mssg">
+                    {% from "includes/_formhelpers.html" import render_field %}
+                </div>  
+                <div class="input-block">
+                    {{render_field(reg_form.name, class_="form-control")}}
+                </div>
+                <div class="input-block">
+                    {{render_field(reg_form.email, class_="form-control")}}
+                </div>
+                <div class="input-block">
+                    {{render_field(reg_form.username, class_="form-control")}}
+                </div>
+                <div class="input-block">
+                    {{render_field(reg_form.password, class_="form-control")}}
+                </div>
+                <div class="input-block">
+                    {{render_field(reg_form.confirm, class_="form-control")}}
+                </div>
+              </fieldset>
+              
                 <label for="submit1"></label>
                 {{render_field(reg_form.submit1)}}
-            </div>    
-        </form>
-    </div>  
-        
-    
-    <div class="form-container sign-in-container">    
-        <form method="POST" action="">
-            <div class="mssgs">
-                {% include 'includes/_messages.html' %}
-            </div>   
-            <h2>Sign In !</h2> <br>    
-            <div class="form-group">
-                {{render_field(login_form.username, class_="form-control")}}
-            </div>
-            <div class="form-group">
-                {{render_field(login_form.password, class_="form-control")}}
-            </div>
-            <label for="submit2"></label>
-            {{render_field(login_form.submit2)}}   
-        </form>
-    </div>
-
-    <div class="overlay-container">
-        <div class="overlay">
-            <div class="overlay-panel overlay-left">
-                <h1>Hello again!</h1>
-                <p>Happy to see you back. Log in now!</p>
-                <button class="register" id="signIn">SIGN IN</button>
-            </div>
-            <div class="overlay-panel overlay-right">
-                <h1>Hello there!</h1>
-                <p>Not a part of the community yet?<br> Create your account today!</p>
-                <button class="register" id="signUp">SIGN UP</button>
-            </div>
+            </form>
+          </div>
         </div>
-    </div>
+      </section>
+       
     
-</div>
-{% endblock %}
+    <script src = "static/js/script2.js"></script>
+    {% endblock %}
+    
