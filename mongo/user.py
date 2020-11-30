@@ -5,8 +5,10 @@ from registerClass import registerForm,loginForm
 from passlib.hash import sha256_crypt
 import pymongo
 import uuid
-import app
-x = "register.html"
+from app import *
+
+
+
 client = pymongo.MongoClient('localhost', 27017)
 db = client.user_login_system
 
@@ -32,12 +34,12 @@ class User:
         
         if db.users.find_one({ "email": user['email'] }):
           error = "Email already exists!"
-          return render_template('register.html', error = error, reg_form=reg_form, login_form=login_form)
+          return render_template(template, error = error, reg_form=reg_form, login_form=login_form)
         
         if db.users.insert_one(user):
           self.start_session(user)
           flash('You are now registered and can log in!', 'success')
-          return render_template('register.html',  reg_form=reg_form, login_form=login_form) 
+          return render_template(template,  reg_form=reg_form, login_form=login_form) 
       
       elif login_form.submit2.data and login_form.validate(): 
         user = db.users.find_one({
@@ -48,10 +50,10 @@ class User:
           return render_template('dashboard.html')
       
       error = 'Check the registered details!'
-      return render_template('register.html', error=error,  reg_form=reg_form, login_form=login_form)
+      return render_template(template, error=error,  reg_form=reg_form, login_form=login_form)
   
     else:
-      return render_template(x, reg_form=reg_form, login_form=login_form)
+      return render_template(template, reg_form=reg_form, login_form=login_form)
 
   def logout(self):
     session.clear()
