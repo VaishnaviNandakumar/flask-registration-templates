@@ -3,7 +3,7 @@ from functools import wraps
 from user import *
 import argparse
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="../templates", static_folder='../static')
 
 parser = argparse.ArgumentParser(description='Set up Config File')   
 parser = argparse.ArgumentParser()
