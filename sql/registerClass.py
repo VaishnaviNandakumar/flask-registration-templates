@@ -9,3 +9,12 @@ class registerForm(Form):
         validators.EqualTo('confirm', message="Passwords do not match")
     ])
     confirm = PasswordField('Confirm Password')
+
+
+class loginForm(Form):
+    
+    username = StringField('', render_kw={"placeholder": "Username"})
+    password = PasswordField('', [
+        validators.DataRequired()
+    ], render_kw={"placeholder": "Password"})
+    submit2 = SubmitField('Login')

@@ -3,6 +3,20 @@ from functools import wraps
 from userClass import User
 
 
+
+parser = argparse.ArgumentParser(description='Set up Config File')   
+parser = argparse.ArgumentParser()
+parser.add_argument('--t', type=str, default="", required= True, help='Template')
+args = parser.parse_args()
+if args.t == "template1":
+  template = "template1.html"
+elif args.t == "template2":
+  template = "template2.html"
+elif args.t == "template3":
+  template = "template3.html"
+else:
+  print("Template does not exists.")
+  
 @app.route('/register', methods = ['GET','POST'])
 def register():
     return User().register()

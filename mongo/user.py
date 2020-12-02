@@ -21,7 +21,9 @@ class User:
   def register(self):
     reg_form = registerForm(request.form)
     login_form = loginForm(request.form)
+
     if request.method == "POST":   
+      #Registration Form
       if reg_form.submit1.data and reg_form.validate():
         user = {
           "_id": uuid.uuid4().hex,
@@ -41,6 +43,7 @@ class User:
           flash('You are now registered and can log in!', 'success')
           return render_template(template,  reg_form=reg_form, login_form=login_form) 
       
+      #Login Form
       elif login_form.submit2.data and login_form.validate(): 
         user = db.users.find_one({
          "username" : login_form.username.data })

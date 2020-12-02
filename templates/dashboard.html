@@ -1,0 +1,9 @@
+<title>Dashboard</title>
+{% extends 'base.html' %}
+
+{% block body %}
+  <h2><b>Dashboard</b></h2>
+  <h3>Welcome {{session.user.name}}</h3>
+  <br>
+  <a href = "/logout">Logout</a>
+{% endblock %}
