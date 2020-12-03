@@ -1,6 +1,6 @@
 from config import *
 from registerClass import registerForm, loginForm
-template = "template1.html"
+
 
 class User:
     def start_session(self, user):
@@ -60,5 +60,5 @@ class User:
     def logout(self):
         session.clear()
         flash("You are now logged out", "success")
-        return redirect('/register')
+        return redirect('/')
     
