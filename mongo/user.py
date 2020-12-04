@@ -48,9 +48,16 @@ class User:
         user = db.users.find_one({
          "username" : login_form.username.data })
 
-        if user and sha256_crypt.verify(login_form.password.data, user['password']):
-          self.start_session(user)
-          return render_template('dashboard.html')
+        if user:
+          if sha256_crypt.verify(login_form.password.data, user['password']):
+            self.start_session(user)
+            return render_template('dashboard.html')
+          else:
+            error = 'Incorrect login details!'
+            return render_template(template, error=error,  reg_form=reg_form, login_form=login_form)
+        else:
+            error = 'Username not found!'
+            return render_template(template, error=error,  reg_form=reg_form, login_form=login_form)
       
       error = 'Check the registered details!'
       return render_template(template, error=error,  reg_form=reg_form, login_form=login_form)
