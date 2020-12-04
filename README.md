@@ -1,13 +1,14 @@
-### Login-Registration Templates 
+# Login-Registration Templates 
+Customizable login and registration templates made with Flask that offers a choice of DB to be used.
 
-### Templates Available
+#### Templates Available
 
 ![Template1](https://github.com/VaishnaviNandakumar/python-flask/blob/main/docs/template1.gif)
 ![Template2](https://github.com/VaishnaviNandakumar/python-flask/blob/main/docs/template2.gif)
 ![Template3](https://github.com/VaishnaviNandakumar/python-flask/blob/main/docs/template3.gif)
 
 
-### Set Up
+#### Set Up
 Activate
 ```
 .venv\Scripts\activate
