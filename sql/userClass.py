@@ -15,13 +15,18 @@ class User:
 
         #Registration Form
         if request.method == 'POST' :
+            try:
+                cur = mysql.connection.cursor()
+            except Exception as e:
+                return "Access Denied. Check your MYSQL Username/Password."
+
             if reg_form.submit1.data and reg_form.validate():
                 name = reg_form.name.data,
                 email = reg_form.email.data,
                 username = reg_form.username.data,
                 password = sha256_crypt.encrypt(reg_form.password.data)
                 
-                cur = mysql.connection.cursor()
+                
                 mail = cur.execute("SELECT * FROM users WHERE email = %s", [email])
                 if mail>0:
                     error = "Email already exists!"
@@ -40,7 +45,6 @@ class User:
             elif login_form.submit2.data and login_form.validate(): 
                 username = login_form.username.data
                 password_candidate = login_form.password.data
-                cur = mysql.connection.cursor()
                 result = cur.execute("SELECT * FROM users WHERE username = %s", [username])
                 if result > 0:
                     data = cur.fetchone()

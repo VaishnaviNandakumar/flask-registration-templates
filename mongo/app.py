@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, redirect
 from functools import wraps
-from user import *
+from userClass import *
 import argparse
 
 app = Flask(__name__, template_folder="../templates", static_folder='../static')

@@ -1,23 +1,25 @@
 ### Sample project to get started with Flask
 
 ### Set Up
-Create Virtual Environment
-```
-py -3 -m venv venv
-```
 Activate
 ```
 .venv\Scripts\activate
 ```
-Install Flask
+
+### Templates Available
+
+![Template1](https://github.com/VaishnaviNandakumar/dip-cli/blob/master/outputs/readme/Spatial-Domain-Outputs.jpg)
+![Template2]()
+![Template3]()
+
+### To Use
+To use the SQL database, set up the XAMPP control panel and create a table.
 ```
-pip install Flask
+cd sql
+python app.py --t template1 --u root --p samplepw --db tablename
 ```
-To run
+
 ```
-set FLASK_APP=sample.py
-flask run
+cd mongo
+python app.py --t template2
 ```
-pip install flask-mysqldb
-pip install Flask-WTF
-pip install Flask-passlib
