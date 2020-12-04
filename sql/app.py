@@ -11,21 +11,21 @@ def register():
 def logout():
     return User().logout()
 
-def is_logged_in(f):
+def login_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):
         if 'logged_in' in session:
             return f(*args, **kwargs)
         else:
-            flash('Unauthorized Please login', 'danger')
-            return redirect(url_for('login'))
+            flash('Unauthorized. Please login.', 'danger')
+            return redirect('/')
     return wrap
 
 @app.route('/dashboard')
-@is_logged_in
+@login_required
 def dashboard():
     return render_template('dashboard.html')
 
 if __name__ == "__main__":
-    app.secret_key = 'secret_key123'
+    app.secret_key = b'\xcc^\x91\xea\x17-\xd0W\x03\xa7\xf8J0\xac8\xc5'
     app.run(debug = True)

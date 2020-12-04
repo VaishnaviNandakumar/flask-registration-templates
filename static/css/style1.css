@@ -139,6 +139,7 @@ form {
 	width: 50%;
 	opacity: 0;
 	z-index: 1;
+	border-left: 1px solid black;
 }
 
 .container.right-panel-active .sign-up-container {
@@ -190,6 +191,7 @@ form {
 	width: 200%;
   	transform: translateX(0);
 	transition: transform 0.6s ease-in-out;
+	
 }
 
 .container.right-panel-active .overlay {
@@ -223,6 +225,7 @@ form {
 	right: 0;
 	transform: translateX(0);
 	background: linear-gradient(to bottom right,  #452f80,  #0a969b) !important;
+
 }
 
 .container.right-panel-active .overlay-right {

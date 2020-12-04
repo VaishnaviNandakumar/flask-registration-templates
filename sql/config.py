@@ -7,18 +7,15 @@ import hashlib
 
 
 app = Flask(__name__, template_folder="../templates", static_folder='../static')
-parser = argparse.ArgumentParser(description='Set up Config File')   
+
+parser = argparse.ArgumentParser(description='Set up Config')   
 parser = argparse.ArgumentParser()
-parser.add_argument('--t', type=str, default="", required= True, help='Template')
+parser.add_argument('--t', type=str, default="", required= True, help='Template to be used')
+
 args = parser.parse_args()
-if args.t == "template1":
-  template = "template1.html"
-elif args.t == "template2":
-  template = "template2.html"
-elif args.t == "template3":
-  template = "template3.html"
-else:
-  print("Template does not exists.")
+template = args.t + ".html"
+
+  
   
 # Config MySQL
 app.config['MYSQL_HOST'] = 'localhost'
