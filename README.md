@@ -1,4 +1,4 @@
-## Login-Registration Templates 
+### Flask Login-Registration Templates 
 Customizable login and registration templates made with Flask that offers a choice of DB to be used between MYSQL and MongoDB.
 
 ### Templates Available
@@ -8,19 +8,17 @@ Customizable login and registration templates made with Flask that offers a choi
 ![Template3](https://github.com/VaishnaviNandakumar/python-flask/blob/main/docs/template3.gif)
 
 
-### Set Up
-Activate
-```
-.venv\Scripts\activate
-```
-
 ### To Use
-To use the SQL database, set up the XAMPP control panel and create a table.
+1. Set up a virtual environment and install dependencies
+```
+pip install -r requirements.txt
+```
+2. ForSQL database, create a table in MySQL and configure the username and password for use.
 ```
 cd sql
 python app.py --t template1 --u root --p samplepw --db tablename
 ```
-
+3. For NoSQL database, add the connection string in userClass.py
 ```
 cd mongo
 python app.py --t template2
