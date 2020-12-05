@@ -1,4 +1,4 @@
-### Flask Login-Registration Templates 
+#### Flask Login-Registration Templates 
 Customizable login and registration templates made with Flask that offers a choice of DB to be used between MYSQL and MongoDB.
 
 ### Templates Available
