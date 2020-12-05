@@ -1,16 +1,5 @@
-from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators
-from flask import Flask, jsonify, request, session, redirect
+from config import *
 from registerClass import registerForm,loginForm
-from passlib.hash import sha256_crypt
-import pymongo
-import uuid
-from app import *
-
-
-
-client = pymongo.MongoClient('mongodb+srv://test:test@cluster0.pwooy.mongodb.net/test?retryWrites=true&w=majority')
-db = client.registration
 
 
 class User:
@@ -64,7 +53,10 @@ class User:
       return render_template(template, error=error,  reg_form=reg_form, login_form=login_form)
   
     else:
-      return render_template(template, reg_form=reg_form, login_form=login_form)
+      try:
+        return render_template(template, reg_form=reg_form, login_form=login_form)
+      except Exception as e:
+        return "Given template does not exists."
 
   def logout(self):
     session.clear()

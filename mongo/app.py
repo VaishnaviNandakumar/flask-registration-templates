@@ -1,22 +1,5 @@
-from flask import Flask, render_template, session, redirect
-from functools import wraps
-from userClass import *
-import argparse
-
-app = Flask(__name__, template_folder="../templates", static_folder='../static')
-
-parser = argparse.ArgumentParser(description='Set up Config File')   
-parser = argparse.ArgumentParser()
-parser.add_argument('--t', type=str, default="", required= True, help='Template')
-args = parser.parse_args()
-if args.t == "template1":
-  template = "template1.html"
-elif args.t == "template2":
-  template = "template2.html"
-elif args.t == "template3":
-  template = "template3.html"
-else:
-  print("Template does not exists.")
+from config import *
+from userClass import User
 
 
 def login_required(f):
@@ -29,7 +12,6 @@ def login_required(f):
       return redirect('/')
   
   return wrap
-
 
 @app.route('/', methods=['POST','GET'])
 def register():
