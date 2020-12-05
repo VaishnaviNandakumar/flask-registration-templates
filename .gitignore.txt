@@ -1,5 +1,0 @@
-#Untrack files/folders
-__pycache__/*
-venv/*
-docs/
-.gitignore
