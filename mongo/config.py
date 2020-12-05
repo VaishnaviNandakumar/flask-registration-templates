@@ -19,5 +19,5 @@ template = args.t + ".html"
 
 
 
-client = pymongo.MongoClient('mongodb+srv://test:test@cluster0.pwooy.mongodb.net/test?retryWrites=true&w=majority')
+client = pymongo.MongoClient('<Connection Strin>')
 db = client.registration
