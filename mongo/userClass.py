@@ -9,8 +9,9 @@ from app import *
 
 
 
-client = pymongo.MongoClient('localhost', 27017)
-db = client.user_login_system
+client = pymongo.MongoClient('mongodb+srv://test:test@cluster0.pwooy.mongodb.net/test?retryWrites=true&w=majority')
+db = client.registration
+
 
 class User:
   def start_session(self, user):
