@@ -19,5 +19,5 @@ template = args.t + ".html"
 
 
 
-client = pymongo.MongoClient('<Connection Strin>')
+client = pymongo.MongoClient('<Connection String>')
 db = client.registration
