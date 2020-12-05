@@ -1,4 +1,5 @@
-#Untrack files/folder
-.gitignore
+#Untrack files/folders
 __pycache__/*
-.venv/*
+venv/*
+docs/
+.gitignore
