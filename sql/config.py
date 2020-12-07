@@ -8,7 +8,7 @@ import argparse
 import hashlib
 import os
 
-cnf_setup = True
+
 app = Flask(__name__, template_folder="../templates", static_folder='../static')
 
 parser = argparse.ArgumentParser(description='Set up Config')   

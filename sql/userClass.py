@@ -67,10 +67,7 @@ class User:
         try:
             return render_template(template, reg_form=reg_form, login_form=login_form)
         except Exception as e:
-            if not cnf_setup:
-                return "Set up config file."
-            else:
-                return "Given template does not exists."
+            return "Given template does not exists."
             
        
         

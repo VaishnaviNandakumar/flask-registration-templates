@@ -25,11 +25,18 @@ load_dotenv()
 
 if  os.environ['SET_UP'] == "False":
     f = open('.env','w')
-    f.write('SET_UP=True\n')
-    f.write('TEMPLATE = {}\n'.format(args.t + ".html"))
-    f.write('MONGO_CONNECTION_STRING = {}\n'.format(args.c))
-    f.write('SECRET_KEY = {}'.format(args.s))
+    val = args.t + ".html" if args.t else False
+    f.write('TEMPLATE={}\n'.format(val))
+    val_str = args.c if args.c else False
+    f.write('MONGO_CONNECTION_STRING={}\n'.format(val_str))
+    f.write('SECRET_KEY={}\n'.format(args.s))
+    if bool(args.t) and bool(args.c) and bool(args.s):
+        f.write('SET_UP=True\n')
+    else:
+        f.write('SET_UP=False\n')
+       
     f.close()
+
 
 template = os.environ['TEMPLATE']
 secret_key = os.environ['SECRET_KEY']
