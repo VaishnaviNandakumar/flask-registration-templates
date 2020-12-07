@@ -9,27 +9,25 @@ Customizable login and registration templates made with Flask that offers a choi
 
 
 ### To Use
-
-1. Set up a virtual environment and install dependencies
+Set up a virtual environment and install dependencies
 ```
 pip install -r requirements.txt
 ```
-#### Initial Setup
 
-2. For SQL database, create a table in MySQL and add required information in the .env file. <br>
-A sample file is given for referenced. It can be initally set up like the following.
+#### Initial Setup
+For SQL database, create a table in MySQL and add required information in the .env file. A sample file is given for reference. It can be initally set up like the following.
 ```
 cd sql
 python app.py --t template1 --u root --p samplepw --h localhost --db tablename --s skey
 ```
 
-3. For NoSQL database, add the connection string to userClass.py.
+For a NoSQL database, intialize the .env file with the requried information.
 ```
 cd mongo
-python app.py --t template2
+python app.py --t template1 --c connection_string --s sskey
 ```
 
-4. Once the .env file is set, the application can be run by going to the required directory.
+Once the .env file is set, the application can be run by going to the required directory.
 ```
 python app.py
 ```
